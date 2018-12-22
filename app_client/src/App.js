@@ -5,7 +5,7 @@ import axios from "axios";
 import Card from "./components/Card"
 import Navbar from "./components/Navbar"
 import Jumbotron from "./components/Jumbotron"
-
+import Gallery from "./components/Gallery"
 
 class App extends Component {
   componentDidMount() {
@@ -24,10 +24,13 @@ class App extends Component {
         <div className="container">
           <Jumbotron />
           <Card />
+          {/* <Gallery /> */}
         </div>
       </div>
     );
   }
 }
+
+// ReactDOM.render(<Gallery imageUrls={urls} />, document.getElementById("mount"));
 
 export default App;
