@@ -22,15 +22,11 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
-          <Jumbotron />
-          <Card />
-          {/* <Gallery /> */}
+          <p>Stupid shit</p>
         </div>
       </div>
     );
   }
 }
-
-// ReactDOM.render(<Gallery imageUrls={urls} />, document.getElementById("mount"));
 
 export default App;

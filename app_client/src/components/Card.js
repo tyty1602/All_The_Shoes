@@ -1,19 +1,54 @@
 import React from "react";
 
-function Card() {
-  return (
-    <div className="card">
-      <div className="card-body">
-        <p className="card-text">
-          Aliquip dolore commodo nostrud minim. Cillum do enim non ullamco. Commodo magna eu ex
-          mollit sunt amet fugiat. In irure eu enim id ea sit nostrud incididunt ad
-          adipisicing.Aliquip dolore commodo nostrud minim. Cillum do enim non ullamco. Commodo
-          magna eu ex mollit sunt amet fugiat. In irure eu enim id ea sit nostrud incididunt ad
-          adipisicing.
-        </p>
-      </div>
-    </div>
-  );
-}
+export default class Card extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      allShoesArray:[]
+    };
+  }
 
-export default Card;
+
+  componentDidMount() {
+    fetch("http://localhost:3001/scrape")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result.items
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.name}>
+              {item.name} {item.price}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+  }
+}

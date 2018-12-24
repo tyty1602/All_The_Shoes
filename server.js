@@ -1,48 +1,36 @@
-class Product {
-  constructor(designer, description, picture) {
-    this.designer = designer;
-    this.description = description;
-    this.picture = picture;
-  }
-}
-
 var cheerio = require("cheerio");
 var axios = require("axios");
 var allShoesArray = [];
 var designerResults = [];
-var allShoesArray = [];
 var descriptionResults = [];
 var myDumbVariable;
+var cors = require('cors');
+const express = require('express'),bodyParser = require('body-parser'),path = require('path')
+const app = express();
 
-const express = require('express'),
-  bodyParser = require('body-parser'),
-  path = require('path')
+// Middleware necessary for front end to talk to backend
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000'],
+}));
 
 const port = process.env.PORT || 3001;
-
-const app = express();
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, './app_client/build')));
+app.use(express.static(path.join(__dirname, './app_client')));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './app_client/build', 'index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
+  res.sendFile(path.join(__dirname, './app_client/', './public/index.html'));
 });
 
 
 app.get('/scrape', function (req, res) {
   axios.get("https://www.net-a-porter.com/us/en/d/shop/Sale/Shoes/All?pn=1&npp=60&image_view=product&dScroll=0").then(function (response) {
-
     var $ = cheerio.load(response.data);
-
     $("div.product-image").each(function (i, element) {
       let obj = {
         image: '',
@@ -58,8 +46,8 @@ app.get('/scrape', function (req, res) {
     });
 
     $("div.description").each(function (i, element) {
-
       //console.log(element);
+      //Axios call for description and designer
       var description = $(element).find("a").attr("title");
       var designer = $(element).find(".designer").text();
       //var title = $(element).attr("title");
@@ -67,8 +55,6 @@ app.get('/scrape', function (req, res) {
       allShoesArray[i].obj.designer = designer;
       allShoesArray[i].obj.description = description;
     });
-
-
 
     // designer and description in the same each to grab the fields and asssign at the given index
     return allShoesArray;
@@ -79,4 +65,7 @@ app.get('/scrape', function (req, res) {
   res.send(allShoesArray);
 });
 
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
+});
 
