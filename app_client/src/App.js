@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from "axios";
+import axios from 'axios';
 //Components
-import Card from "./components/Card"
-import Navbar from "./components/Navbar"
-import Jumbotron from "./components/Jumbotron"
-import Gallery from "./components/Gallery"
+import Card from './components/Card'
+import Navbar from './components/Navbar'
+import Jumbotron from './components/Jumbotron'
+
 
 class App extends Component {
   componentDidMount() {
@@ -20,9 +20,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
         <div className="container">
-          <p>Stupid shit</p>
+          <Card />
         </div>
       </div>
     );

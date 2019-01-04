@@ -1,9 +1,9 @@
 var cheerio = require("cheerio");
 var axios = require("axios");
 var allShoesArray = [];
-var designerResults = [];
-var descriptionResults = [];
-var myDumbVariable;
+// var designerResults = [];
+// var descriptionResults = [];
+// var myDumbVariable;
 var cors = require('cors');
 const express = require('express'),bodyParser = require('body-parser'),path = require('path')
 const app = express();
