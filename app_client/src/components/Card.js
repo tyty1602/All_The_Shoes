@@ -16,9 +16,10 @@ export default class Card extends React.Component{
       .then(res => res.json())
       .then(
         (result) => {
+          console.log(result);
           this.setState({
             isLoaded: true,
-            items: result.items
+            items: result
           });
         },
         // Note: it's important to handle errors here
@@ -42,9 +43,10 @@ export default class Card extends React.Component{
     } else {
       return (
         <ul>
-          {items.map(item => (
-            <li key={item.name}>
-              {item.name} {item.price}
+          {items.map((item, index) => (
+            <li key={index}>
+              Name= {item.obj.designer} : Description= {item.obj.description}
+              <img src={item.obj.image} alt={item.obj.designer}/>
             </li>
           ))}
         </ul>
