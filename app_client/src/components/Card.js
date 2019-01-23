@@ -42,14 +42,21 @@ export default class Card extends React.Component{
       return <div>Loading...</div>;
     } else {
       return (
+        <div>
+          <h3>All The Shoes</h3>
         <ul>
           {items.map((item, index) => (
-            <li key={index}>
+            // <li key={index}>
+            //   Name= {item.obj.designer} : Description= {item.obj.description}
+            //   <img src={item.obj.image} alt={item.obj.designer}/>
+            // </li>
+            <li class="list-group-item" key={index}>
               Name= {item.obj.designer} : Description= {item.obj.description}
-              <img src={item.obj.image} alt={item.obj.designer}/>
+             <img src={item.obj.image} alt={item.obj.designer}/>
             </li>
           ))}
         </ul>
+        </div>
       );
     }
   }
