@@ -64,15 +64,14 @@ app.get('/scrape', function (req, res) {
     });
 
     // designer and description in the same each to grab the fields and asssign at the given index
-    return allShoesArray;
-
+    // return allShoesArray;
+    res.send(allShoesArray);
     //console.log(allShoesArray);
     //res.send(allShoesArray);
-  }).then(allShoesArray => console.log("mmmmmmmmmmmmmmmmmmmmmmmm", allShoesArray));
-  res.send(allShoesArray);
+  // }).then(allShoesArray => console.log("mmmmmmmmmmmmmmmmmmmmmmmm", allShoesArray));
+  })
 });
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
 });
-
