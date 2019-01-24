@@ -11,7 +11,7 @@ const app = express();
 // Middleware necessary for front end to talk to backend
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3000', 'https://radiant-atoll-34503.herokuapp.com/'],
 }));
 
 const port = process.env.PORT || 3001;
