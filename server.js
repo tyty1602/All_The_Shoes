@@ -21,11 +21,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join('./app_client/build')));
+app.use(express.static('./app_client/build'));
 
 app.get('/', function (req, res) {
   console.log('DIRNAME: ', __dirname)
-  res.sendFile(path.join('./app_client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../app_client/build', 'index.html'));
 });
 
 // app.use(express.static(path.join(__dirname, 'build')));
