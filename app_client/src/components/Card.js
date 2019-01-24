@@ -12,7 +12,7 @@ export default class Card extends React.Component{
 
 
   componentDidMount() {
-    fetch("http://localhost:3001/scrape")
+    fetch("https://radiant-atoll-34503.herokuapp.com/scrape")
       .then(res => res.json())
       .then(
         (result) => {
